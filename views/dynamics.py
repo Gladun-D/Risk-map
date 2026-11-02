@@ -34,7 +34,7 @@ def render():
                                  marker_line=dict(color=c["surface"], width=2), customdata=summary["Неделя"],
                                  hovertemplate="%{customdata}<br>" + lv["name"] + ": %{y}<extra></extra>"))
         fig.update_layout(barmode="stack", height=340, margin=dict(l=4, r=4, t=4, b=4), legend=dict(orientation="h", y=-0.2),
-                          yaxis=dict(title="Рисков", fixedrange=True), xaxis=dict(fixedrange=True, title="Неделя с"))
+                          yaxis=dict(title="Рисков", fixedrange=True), xaxis=dict(fixedrange=True, title="Неделя с", type="category"))
         st.plotly_chart(fig, width="stretch", config={"displayModeBar": False}, key="dyn_levels")
     with right:
         st.subheader("Суммарный балл открытых рисков")
@@ -43,7 +43,7 @@ def render():
                                    textposition="top center", line=dict(color="#2a78d6", width=2), marker=dict(size=8),
                                    hovertemplate="%{customdata}: %{y}<extra></extra>", showlegend=False))
         fig.update_layout(height=340, margin=dict(l=4, r=4, t=4, b=4), yaxis=dict(title="Сумма баллов", rangemode="tozero", fixedrange=True),
-                          xaxis=dict(fixedrange=True))
+                          xaxis=dict(fixedrange=True, type="category"))
         st.plotly_chart(fig, width="stretch", config={"displayModeBar": False}, key="dyn_total")
 
     st.subheader("Лента рисков по неделям")
@@ -69,7 +69,7 @@ def render():
             textfont=dict(size=11, color="#0b0b0b"),
             hovertemplate="%{y}<br>неделя с %{x}: балл %{text}<extra></extra>"))
         fig.update_layout(height=max(260, 26 * len(piv) + 60), margin=dict(l=4, r=4, t=4, b=4),
-                          yaxis=dict(autorange="reversed", fixedrange=True), xaxis=dict(side="top", fixedrange=True))
+                          yaxis=dict(autorange="reversed", fixedrange=True), xaxis=dict(side="top", fixedrange=True, type="category"))
         st.plotly_chart(fig, width="stretch", config={"displayModeBar": False}, key="dyn_ribbon")
 
     st.subheader(f"Изменения за период: {rules.week_label(weeks[0])} → {rules.week_label(weeks[-1])}")

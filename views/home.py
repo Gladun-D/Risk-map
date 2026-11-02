@@ -30,11 +30,11 @@ def render():
     exposure = int(open_["score"].fillna(0).sum())
     prev_exposure = int(open_["prev_score"].fillna(0).sum())
     k = st.columns(4)
-    k[0].metric("Открытых рисков", len(open_), border=True)
+    k[0].metric("Открыто", len(open_), border=True)
     k[1].metric("Критических", len(att["critical"]), border=True)
-    k[2].metric("Суммарный балл", exposure, delta=exposure - prev_exposure, delta_color="inverse", border=True,
-                help="Сумма баллов открытых рисков; дельта — к концу прошлой недели. Рост — плохо.")
-    k[3].metric("Выросли за неделю", len(att["grown"]), border=True)
+    k[2].metric("Сумма баллов", exposure, delta=exposure - prev_exposure, delta_color="inverse", border=True,
+                help="Сумма баллов открытых рисков; дельта — к положению 7 дней назад. Рост — плохо.")
+    k[3].metric("Рост за 7 дн.", len(att["grown"]), border=True)
 
     left, right = st.columns([3, 2], gap="large")
     with left:

@@ -292,7 +292,7 @@ def risk_table(df: pd.DataFrame, levels, key: str | None = None, height: int | N
         "p": st.column_config.NumberColumn("В", help="Вероятность 1–5", width="small"),
         "i": st.column_config.NumberColumn("Вл", help="Влияние 1–5", width="small"),
         "score": st.column_config.ProgressColumn("Балл", min_value=0, max_value=25, format="%d", width="small"),
-        "level": "Уровень", "trend": st.column_config.TextColumn("Тренд", help="Изменение балла с конца прошлой недели", width="small"),
+        "level": "Уровень", "trend": st.column_config.TextColumn("Тренд", help="Изменение балла за 7 дней", width="small"),
         "due_date": st.column_config.DateColumn("Срок мер", format="DD.MM.YYYY"),
         "assessed_on": st.column_config.DateColumn("Оценён", format="DD.MM.YYYY"),
     }

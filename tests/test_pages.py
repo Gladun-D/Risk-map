@@ -172,3 +172,14 @@ def test_import_word_note_end_to_end(tmp_path):
     db = common.get_db()
     assert db.count() == 22                                      # 20 демо + 2 новых, без оценки
     assert db.find_risk(title="Очное присутствие")["description"] == "все работы на объектах заказчика."
+
+
+def test_week_axes_are_categories():
+    """Подписи недель «17.08» Plotly принимает за числа — оси недель должны быть категориальными."""
+    import json
+
+    for page, n in (("dynamics", 3), ("card", 1)):
+        at = _run(page, "Риск-менеджер")
+        specs = [json.loads(el.proto.spec) for el in at.get("plotly_chart")]
+        week_axes = [s["layout"]["xaxis"] for s in specs if s["layout"].get("xaxis", {}).get("type") == "category"]
+        assert len(week_axes) == n, page

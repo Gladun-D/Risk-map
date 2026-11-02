@@ -57,7 +57,7 @@ def _score_by_week(d, risk_id: int) -> go.Figure:
                                  line=dict(color=c["text"], width=2), marker=dict(size=8),
                                  hovertemplate="неделя с %{x}: балл %{y}<extra></extra>", showlegend=False))
     fig.update_layout(height=260, margin=dict(l=4, r=4, t=4, b=4), yaxis=dict(title="Балл", range=[0, 26], fixedrange=True),
-                      xaxis=dict(fixedrange=True))
+                      xaxis=dict(fixedrange=True, type="category"))
     return fig
 
 
